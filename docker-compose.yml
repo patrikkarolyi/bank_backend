@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  user-app-image:
+    build: ./user
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+
+  transaction-app-image:
+    build: ./transaction
+    depends_on:
+      - mongodb
+    ports:
+      - "8081:8081"
