@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service
 class UserService(private val userRepository: UserRepository) {
 
     fun getUser(id: Long): User? {
-        return null
+        return userRepository.findById(id).orElse(null)
     }
 
     fun createUser(user: User): User {
-        return user
+        return userRepository.insert(user)
     }
 
     fun getUsers(): List<User> {
-        return emptyList()
+        return userRepository.findAll()
     }
 }
